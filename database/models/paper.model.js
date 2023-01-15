@@ -13,29 +13,30 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.STRING,
             allowNull: true
-        
+
         },
         link: {
             type: DataTypes.STRING,
             allowNull: false
-        
+
         },
         id_user: {
             type: DataTypes.STRING,
             allowNull: false
-        
+
         },
         status: {
             type: DataTypes.STRING,
-            allowNull: false
-        
+            allowNull: false,
+            defaultValue: 'Submitted'
+
         },
         suggesions: {
             type: DataTypes.JSON,
             allowNull: true
         },
-        
-        
+
+
     })
     // Paper.sync({ force: true }).then(() => console.log('PAPER MODEL CREATED')).catch((err) => console.log('ERROR ' + err))
     return Paper

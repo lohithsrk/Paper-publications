@@ -8,7 +8,6 @@ const { transporter } = require('../utils/nodemailer.util')
 exports.signUpPost = async (req, res) => {
     try {
         const { email, password, otp, confirmOTP, phone } = req.body;
-        console.log("🚀 ~ file: auth.controller.js:11 ~ exports.signUpPost= ~ email", email)
         if (otp !== confirmOTP) {
             return res.status(500).json('Invalid OTP. Please enter the OTP which is sent to your mail.')
         }

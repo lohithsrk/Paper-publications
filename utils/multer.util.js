@@ -1,23 +1,15 @@
 const multer = require('multer')
+const fs = require('fs')
 
-exports.teaserUpload = multer({
+exports.paperUpload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, `Zules/${file.zulist}`)
+            path = `papers/${req.body.userId}`
+            fs.mkdirSync(path, { recursive: true })
+            cb(null, path)
         },
         filename: function (req, file, cb) {
-            cb(null, file.originalname + '-teaser')
-        },
-    }), limits: { fieldSize: 25 * 1024 * 1024 }
-})
-
-exports.ZuleUpload = multer({
-    storage: multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, `Zules/${file.zulist}`)
-        },
-        filename: function (req, file, cb) {
-            cb(null, file.originalname + '-zule')
+            cb(null, file.originalname)
         },
     }), limits: { fieldSize: 25 * 1024 * 1024 }
 })

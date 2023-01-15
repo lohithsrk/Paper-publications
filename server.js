@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const authRouter = require('./routers/auth.route')
 const userRouter = require('./routers/validate.route')
+const paperRouter = require('./routers/paper.route')
 
 const db = require('./database/database')
 
@@ -17,6 +18,7 @@ app.use(cors())
 
 app.use('/api', authRouter)
 app.use('/api/user', userRouter)
+app.use('/api', paperRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`SERVER IS RUNNING ON PORT ${process.env.PORT}`);
