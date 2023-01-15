@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import "./App.css";
+
+import RegisterPage from "./pages/auth/Register.page";
+import LoginPage from "./pages/auth/Login.page";
+import EmployeePage from './pages/Employee.page';
+import UserRoute from './routes/User.route';
+import Navbar from './components/Navbar.component';
 
 function App() {
+  const { user } = useSelector((state) => ({ ...state }));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer />
+      <Navbar />
+      <Router>
+        <div className="main-body">
+          <Routes>
+            {user ? (
+              <>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/" element={<EmployeePage />} />
+                </Route>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/register" element={<RegisterPage />} />
+                </Route>
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </>
+            )}
+            <Route path="*" element={<div>404</div>} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 
