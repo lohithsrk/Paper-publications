@@ -1,4 +1,5 @@
 var uniqid = require('uniqid');
+const path = require('path');
 
 const { Paper } = require('../database/database')
 
@@ -37,6 +38,19 @@ exports.addPaperPost = async (req, res) => {
 
 }
 
+exports.updatePaperPost = async (req, res) => {
+    try {
+        await Paper.update({ ...req.body, link: req.file ? req.file.path : req.body.link }, { where: { id_paper: req.body.id_paper }, raw: true }).then(response => {
+            res.json('ok')
+        })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error });
+    }
+
+}
+
 exports.setPaperStatus = async (req, res) => {
     try {
         const { id_paper, status } = req.body
@@ -63,5 +77,7 @@ exports.getParticularPaper = async (req, res) => {
 }
 
 exports.servePaper = async (req, res) => {
-    console.log(req.url);
+    const { url } = req
+    const paperPath = path.join(__dirname, '../', decodeURI(url))
+    res.sendFile(paperPath);
 }

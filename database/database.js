@@ -16,5 +16,6 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 db.User = require('./models/user.model')(sequelize, Sequelize.DataTypes)
 db.Paper = require('./models/paper.model')(sequelize, Sequelize.DataTypes)
+db.Suggestion = require('./models/suggestions.model')(sequelize, Sequelize.DataTypes)
 
 module.exports = db
