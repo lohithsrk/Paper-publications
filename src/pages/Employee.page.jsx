@@ -33,7 +33,6 @@ const EmployeePage = () => {
 				Welcome back {user.name}
 			</h1>
 			<div className='flex w-full justify-around'>
-				<span className='font-semibold'>Mentor: XXXYYY</span>
 				<span className='font-semibold'>
 					Papers Submitted:{' '}
 					{papers.filter((paper) => paper.status === 'Submitted').length}

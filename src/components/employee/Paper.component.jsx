@@ -1,11 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { setPaper } from '../../axios/paper.axios';
 
 const Paper = ({ paper, fetchPapers, user }) => {
+	const navigate = useNavigate();
+
 	return (
-		<Link to={`/paper/${paper.id_user}/${paper.id_paper}`}>
+		<div
+			onClick={(e) => {
+				
+				navigate(`/paper/${paper.id_user}/${paper.id_paper}`);
+			}}
+			className='cursor-pointer'
+		>
 			<div
 				className={`flex mx-20 my-5 justify-between items-center rounded-lg ${
 					paper.status === 'Submitted'
@@ -32,6 +40,7 @@ const Paper = ({ paper, fetchPapers, user }) => {
 								}
 							);
 						}}
+						onClick={(e)=>e.stopPropagation()}
 					>
 						<option value='Submitted'>Submitted</option>
 						<option value='Revision'>Revision</option>
@@ -42,7 +51,7 @@ const Paper = ({ paper, fetchPapers, user }) => {
 					</p>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 };
 

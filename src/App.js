@@ -13,6 +13,7 @@ import EmployeePage from './pages/Employee.page';
 import UserRoute from './routes/User.route';
 import Navbar from './components/Navbar.component';
 import Paperpage from './pages/Paper.page';
+import ManagerPage from './pages/Manager.page';
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -23,13 +24,19 @@ function App() {
       <Router>
         <div className="main-body">
           <Routes>
-            {user ? (
+            {user && user.role === 'standard' ? (
               <>
                 <Route path="/" element={<UserRoute />}>
                   <Route path="/" element={<EmployeePage />} />
                 </Route>
                 <Route path="/" element={<UserRoute />}>
                   <Route path="/register" element={<RegisterPage />} />
+                </Route>
+              </>
+            ) : user && user.role === 'admin' ? (
+              <>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/" element={<ManagerPage />} />
                 </Route>
               </>
             ) : (
