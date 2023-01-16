@@ -47,6 +47,21 @@ exports.setPaperStatus = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error });
-
     }
+}
+
+exports.getParticularPaper = async (req, res) => {
+    try {
+        const { id_user, id_paper } = req.body
+        await Paper.findOne({ where: { id_user, id_paper }, raw: true }).then(response => {
+            res.json(response)
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error });
+    }
+}
+
+exports.servePaper = async (req, res) => {
+    console.log(req.url);
 }
