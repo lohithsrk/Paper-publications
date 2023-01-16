@@ -12,6 +12,7 @@ import LoginPage from "./pages/auth/Login.page";
 import EmployeePage from './pages/Employee.page';
 import UserRoute from './routes/User.route';
 import Navbar from './components/Navbar.component';
+import Paperpage from './pages/Paper.page';
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -29,6 +30,9 @@ function App() {
                 </Route>
                 <Route path="/" element={<UserRoute />}>
                   <Route path="/register" element={<RegisterPage />} />
+                </Route>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/paper/:id_user/:id_paper" element={<Paperpage />} />
                 </Route>
               </>
             ) : (
