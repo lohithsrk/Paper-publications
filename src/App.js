@@ -31,9 +31,6 @@ function App() {
                 <Route path="/" element={<UserRoute />}>
                   <Route path="/register" element={<RegisterPage />} />
                 </Route>
-                <Route path="/" element={<UserRoute />}>
-                  <Route path="/paper/:id_user/:id_paper" element={<Paperpage />} />
-                </Route>
               </>
             ) : (
               <>
@@ -41,6 +38,9 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
               </>
             )}
+            <Route path="/" element={<UserRoute />}>
+              <Route path="/paper/:id_user/:id_paper" element={<Paperpage />} />
+            </Route>
             <Route path="*" element={<div>404</div>} />
           </Routes>
         </div>

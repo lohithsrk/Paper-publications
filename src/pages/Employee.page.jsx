@@ -60,9 +60,6 @@ const EmployeePage = () => {
 						/>
 						<span className='mx-2'>Add paper</span>
 					</button>
-					<button className='bg-[#313A87] rounded-full flex text-white p-2 items-center px-4 ml-5'>
-						Get Suggestions
-					</button>
 				</div>
 				<div>
 					<select
@@ -76,7 +73,14 @@ const EmployeePage = () => {
 			</div>
 			<div>
 				{papers.map((paper, index) => {
-					return <Paper paper={paper} key={index} fetchPapers={fetchPapers} user={user} />;
+					return (
+						<Paper
+							paper={paper}
+							key={index}
+							fetchPapers={fetchPapers}
+							user={user}
+						/>
+					);
 				})}
 			</div>
 		</section>
