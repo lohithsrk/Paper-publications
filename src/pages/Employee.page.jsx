@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import AddPaper from '../components/employee/AddPaper.component';
 import Paper from '../components/employee/Paper.component';
 
 import { getPaper } from '../axios/paper.axios';
 
-const EmployeePage = () => {
+const Employee = () => {
+	const { id_user } = useParams();
 	const { user } = useSelector((state) => ({ ...state }));
 
 	const [papers, setPapers] = useState([]);
 	const [isDialogopened, setIsDialogopened] = useState(false);
 
 	const fetchPapers = async (order) =>
-		getPaper(user.id_user, user.token, order).then((res) => {
-			setPapers(res.data);
-		});
+		getPaper(id_user ? id_user : user.id_user, user.token, order).then(
+			(res) => {
+				setPapers(res.data);
+			}
+		);
 
 	useEffect(() => {
 		fetchPapers('DESC');
 	}, []);
 
 	return (
-		<section className='relative'>
+		<section
+			className={`relative ${
+				user.role === 'admin' ? 'w-[calc(100vw-10rem)]' : 'w-full'
+			}`}
+		>
 			{isDialogopened && (
 				<AddPaper
 					fetchPapers={fetchPapers}
@@ -61,13 +69,14 @@ const EmployeePage = () => {
 					</button>
 				</div>
 				<div>
-					<select
-						className='border-[#313A87] border-2 rounded-lg p-1 flex'
-						onChange={(e) => fetchPapers(e.target.value)}
-					>
-						<option value='DESC'>Latest</option>
-						<option value='ASC'>Oldest</option>
-					</select>
+						<select
+							className='border-[#313A87] border-2 rounded-lg p-1 flex'
+							onChange={(e) => fetchPapers(e.target.value)}
+						>
+							<option value='DESC'>Latest</option>
+							<option value='ASC'>Oldest</option>
+						</select>
+					
 				</div>
 			</div>
 			<div>
@@ -86,4 +95,4 @@ const EmployeePage = () => {
 	);
 };
 
-export default EmployeePage;
+export default Employee;

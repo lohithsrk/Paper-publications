@@ -7,13 +7,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 
-import RegisterPage from "./pages/auth/Register.page";
+import CreateUser from "./pages/auth/CreateUser.page";
 import LoginPage from "./pages/auth/Login.page";
-import EmployeePage from './pages/Employee.page';
+import Employee from './pages/Employee.page';
 import UserRoute from './routes/User.route';
 import Navbar from './components/Navbar.component';
-import Paperpage from './pages/Paper.page';
-import ManagerPage from './pages/Manager.page';
+import Paper from './pages/Paper.page';
+import Employees from './pages/Employees.page';
+import Statistics from './pages/Statistics.page';
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -27,16 +28,22 @@ function App() {
             {user && user.role === 'standard' ? (
               <>
                 <Route path="/" element={<UserRoute />}>
-                  <Route path="/" element={<EmployeePage />} />
-                </Route>
-                <Route path="/" element={<UserRoute />}>
-                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/" element={<Employee />} />
                 </Route>
               </>
             ) : user && user.role === 'admin' ? (
               <>
                 <Route path="/" element={<UserRoute />}>
-                  <Route path="/" element={<ManagerPage />} />
+                  <Route path="/" element={<Statistics />} />
+                </Route>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/user/:id_user" element={<Employee />} />
+                </Route>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/employees" element={<Employees />} />
+                </Route>
+                <Route path="/" element={<UserRoute />}>
+                  <Route path="/create-user" element={<CreateUser />} />
                 </Route>
               </>
             ) : (
@@ -46,7 +53,7 @@ function App() {
               </>
             )}
             <Route path="/" element={<UserRoute />}>
-              <Route path="/paper/:id_user/:id_paper" element={<Paperpage />} />
+              <Route path="/paper/:id_user/:id_paper" element={<Paper />} />
             </Route>
             <Route path="*" element={<div>404</div>} />
           </Routes>

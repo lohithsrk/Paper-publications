@@ -8,7 +8,7 @@ import Suggestion from '../components/paper/Suggestion.component';
 import { getParticularPaper, updatePaper } from '../axios/paper.axios';
 import { getSuggestion, requestSuggestion } from '../axios/suggestion.axios';
 
-const Paperpage = () => {
+const Paper = () => {
 	const { id_paper, id_user } = useParams({});
 
 	const { user } = useSelector((state) => ({ ...state }));
@@ -154,4 +154,4 @@ const Paperpage = () => {
 	);
 };
 
-export default Paperpage;
+export default Paper;

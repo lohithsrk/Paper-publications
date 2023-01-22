@@ -9,7 +9,6 @@ const Paper = ({ paper, fetchPapers, user }) => {
 	return (
 		<div
 			onClick={(e) => {
-				
 				navigate(`/paper/${paper.id_user}/${paper.id_paper}`);
 			}}
 			className='cursor-pointer'
@@ -27,25 +26,26 @@ const Paper = ({ paper, fetchPapers, user }) => {
 
 				<div>
 					<p>Status: {paper.status}</p>
-
-					<select
-						name='Change status'
-						id=''
-						className='mt-1 rounded-lg border-[#ffff]'
-						defaultValue={paper.status}
-						onChange={(e) => {
-							setPaper(paper.id_paper, user.token, e.target.value).then(
-								(res) => {
-									fetchPapers('DESC');
-								}
-							);
-						}}
-						onClick={(e)=>e.stopPropagation()}
-					>
-						<option value='Submitted'>Submitted</option>
-						<option value='Revision'>Revision</option>
-						<option value='Reviewed'>Reviewed</option>
-					</select>
+					{user.role !== 'admin' && (
+						<select
+							name='Change status'
+							id=''
+							className='mt-1 rounded-lg border-[#ffff]'
+							defaultValue={paper.status}
+							onChange={(e) => {
+								setPaper(paper.id_paper, user.token, e.target.value).then(
+									(res) => {
+										fetchPapers('DESC');
+									}
+								);
+							}}
+							onClick={(e) => e.stopPropagation()}
+						>
+							<option value='Submitted'>Submitted</option>
+							<option value='Revision'>Revision</option>
+							<option value='Reviewed'>Reviewed</option>
+						</select>
+					)}
 					<p className='pt-3'>
 						Date: {new Date(paper.createdAt).toLocaleString()}
 					</p>
