@@ -4,9 +4,9 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 const authRouter = require('./routers/auth.route')
-const userRouter = require('./routers/validate.route')
 const paperRouter = require('./routers/paper.route')
 const suggestionRouter = require('./routers/suggestion.route')
+const employeeRouter = require('./routers/employees.route')
 
 const db = require('./database/database')
 
@@ -18,9 +18,9 @@ app.use(morgan('dev'))
 app.use(cors())
 
 app.use('/api', authRouter)
-app.use('/api/user', userRouter)
 app.use('/api', paperRouter)
 app.use('/api', suggestionRouter)
+app.use('/api', employeeRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`SERVER IS RUNNING ON PORT ${process.env.PORT}`);

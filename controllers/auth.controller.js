@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 var uniqid = require('uniqid');
 
 const { User } = require('../database/database')
-const { transporter } = require('../utils/nodemailer.util')
 
 exports.signUpPost = async (req, res) => {
     try {
@@ -85,45 +84,6 @@ exports.loginPost = async (req, res) => {
             token,
             ...user
         });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ error });
-    }
-}
-
-exports.forgotPost = async (req, res) => {
-    try {
-        const { email } = req.body
-
-        const user = await User.count({ where: { email } })
-
-        if (!user) return res.status(500).json({ error: 'User does not exist' })
-        await transporter.sendMail({
-            from: process.env.EMAIL,
-            to: email,
-            subject: "Reset your Mizule Account's password",
-            html: `<p><a href='${process.env.BASE_URL}/app/${results[0].user_id}'>Click here</a> to reset your Mizule Account's password</p>`,
-        });
-        res.json('ok')
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ error });
-    }
-}
-
-exports.resetPassword = async (req, res) => {
-    try {
-        const { user_id, password } = req.body
-
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(password, salt);
-
-        let user = await User.findByPk(user_id)
-
-        if (!user) return res.status(500).json({ error })
-
-        user = await User.update({ password: hash }, { where: { id: user_id } })
-        res.json('ok')
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error });
