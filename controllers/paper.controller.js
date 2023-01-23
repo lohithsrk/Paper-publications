@@ -81,3 +81,13 @@ exports.servePaper = async (req, res) => {
     const paperPath = path.join(__dirname, '../', decodeURI(url))
     res.sendFile(paperPath);
 }
+exports.recentPapers = async (req, res) => {
+    try {
+        await Paper.findAll({ raw: true, order: [['updatedAt', 'DESC']], limit: 15 }).then(response => {
+            res.json(response)
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error });
+    }
+}

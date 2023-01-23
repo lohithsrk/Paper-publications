@@ -1,5 +1,6 @@
 var uniqid = require('uniqid');
 
+const { Op } = require('sequelize')
 const { Suggestion } = require('../database/database')
 
 exports.requestSuggestion = async (req, res) => {
@@ -25,3 +26,18 @@ exports.getSuggestions = async (req, res) => {
     res.json(suggestions)
 
 }
+
+exports.allSuggestions = async (req, res) => {
+
+    // const suggestions = await Suggestion.findAll({
+    //     where: {
+    //         [Op.col]: 'papers.id_paper'
+    //     }, 
+    //     raw: true
+    // })
+    // console.log("🚀 ~ file: suggestion.controller.js:32 ~ exports.allSuggestions= ~ suggestions", suggestions)
+
+    // res.json(suggestions)
+
+}
+
