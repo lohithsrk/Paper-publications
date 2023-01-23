@@ -14,7 +14,7 @@ const Paper = ({ paper, fetchPapers, user }) => {
 			className='cursor-pointer'
 		>
 			<div
-				className={`flex mx-20 my-5 justify-between items-center rounded-lg ${
+				className={`flex my-5 justify-between items-center rounded-lg shadow-md mr-3 ${
 					paper.status === 'Submitted'
 						? 'bg-[#E98086]'
 						: paper.status === 'Revision'

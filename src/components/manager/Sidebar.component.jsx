@@ -5,7 +5,7 @@ const Sidebar = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<div className='bg-gray-100 h-[calc(100vh-5rem)] py-3 px-5 w-[15%] shadow-lg'>
+		<div className='bg-gray-100 h-[calc(100vh-5rem)] py-3 px-5 w-[15rem] shadow-lg'>
 			<ul>
 				{adminNav.map((nav, index) => (
 					<li
