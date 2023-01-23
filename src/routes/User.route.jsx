@@ -9,7 +9,7 @@ const UserRoute = () => {
 	return user && user.token.length ? (
 		<div className={user.role === 'admin' && 'flex'}>
 			{user.role === 'admin' && <Sidebar />}
-			<div className={user.role === 'admin' && 'p-3'}>
+			<div>
 				<Outlet />
 			</div>
 		</div>

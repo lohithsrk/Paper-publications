@@ -30,7 +30,7 @@ const Employees = () => {
 				{allEmployees.map((employee, index) => {
 					return (
 						<div
-							key={index}
+							key={index}u
 							className='bg-gray-200 p-3 px-5 rounded-md shadow-md cursor-pointer'
 							onClick={() => navigate(`/user/${employee.id_user}`)}
 						>

@@ -14,7 +14,7 @@ import UserRoute from './routes/User.route';
 import Navbar from './components/Navbar.component';
 import Paper from './pages/Paper.page';
 import Employees from './pages/Employees.page';
-import Statistics from './pages/Statistics.page';
+import Dashboard from './pages/Dashboard.page';
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -34,7 +34,7 @@ function App() {
             ) : user && user.role === 'admin' ? (
               <>
                 <Route path="/" element={<UserRoute />}>
-                  <Route path="/" element={<Statistics />} />
+                  <Route path="/" element={<Dashboard />} />
                 </Route>
                 <Route path="/" element={<UserRoute />}>
                   <Route path="/user/:id_user" element={<Employee />} />

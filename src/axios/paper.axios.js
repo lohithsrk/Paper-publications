@@ -19,3 +19,6 @@ export const setPaper = async (id_paper, token, status) =>
 
 export const servePaper = async (link) =>
     await axios.get(`${base_URL}/${link}`)
+
+export const getRecentPapers = async (token) =>
+    await axios.get(`${base_URL}/papers/recent`, { headers: { 'Authorization': `Bearer ${token}` } })
