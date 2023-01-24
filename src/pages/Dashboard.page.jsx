@@ -7,7 +7,7 @@ const Dashboard = () => {
 	return (
 		<div className='flex w-[calc(100vw-15rem)] h-[calc(100vh-5rem)] p-3 relative overflow-hidden'>
 			<div className='w-full flex flex-col'>
-				<div className='h-full w-1/2'>
+				<div className='h-full w-full'>
 					<PiechartComponent />
 				</div>
 				<div className='h-full'>
