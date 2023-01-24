@@ -37,10 +37,10 @@ const Employee = () => {
 					setIsDialogopened={setIsDialogopened}
 				/>
 			)}
-			<h1 className='text-center font-bold text-4xl py-7'>
+			<h1 className='pl-20 font-bold text-4xl py-7'>
 				Welcome back {user.name}
 			</h1>
-			<div className='flex w-full justify-around'>
+			<div className='flex w-full justify-between px-20'>
 				<span className='font-semibold'>
 					Papers Submitted:{' '}
 					{papers.filter((paper) => paper.status === 'Submitted').length}
@@ -54,7 +54,9 @@ const Employee = () => {
 					{papers.filter((paper) => paper.status === 'Reviewed').length}
 				</span>
 			</div>
-			<div className='flex justify-between mx-20 my-10'>
+			<br />
+			<hr />
+			<div className='flex justify-between items-center mx-20 my-6'>
 				<div className='flex'>
 					<button
 						className='bg-[#313A87] rounded-full flex text-white p-2 items-center'
@@ -69,17 +71,18 @@ const Employee = () => {
 					</button>
 				</div>
 				<div>
-						<select
-							className='border-[#313A87] border-2 rounded-lg p-1 flex'
-							onChange={(e) => fetchPapers(e.target.value)}
-						>
-							<option value='DESC'>Latest</option>
-							<option value='ASC'>Oldest</option>
-						</select>
-					
+					<select
+						className='border-[#313A87] border-2 rounded-lg p-1 flex'
+						onChange={(e) => fetchPapers(e.target.value)}
+					>
+						<option value='DESC'>Latest</option>
+						<option value='ASC'>Oldest</option>
+					</select>
 				</div>
 			</div>
-			<div>
+			<hr />
+			<br />
+			<div className='flex px-20 gap-7 flex-wrap '>
 				{papers.map((paper, index) => {
 					return (
 						<Paper

@@ -14,7 +14,7 @@ const Paper = ({ paper, fetchPapers, user }) => {
 			className='cursor-pointer'
 		>
 			<div
-				className={`flex my-5 justify-between items-center rounded-lg shadow-md mr-3 ${
+				className={`flex justify-center items-center rounded-lg shadow-md flex-col p-2 min-w-fit ${
 					paper.status === 'Submitted'
 						? 'bg-[#E98086]'
 						: paper.status === 'Revision'
@@ -24,7 +24,7 @@ const Paper = ({ paper, fetchPapers, user }) => {
 			>
 				<h1 className='text-center font-bold text-2xl'>{paper.title}</h1>
 
-				<div>
+				<div className='flex items-center justify-center flex-col'>
 					<p>Status: {paper.status}</p>
 					{user.role !== 'admin' && (
 						<select

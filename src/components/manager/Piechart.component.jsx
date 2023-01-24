@@ -14,7 +14,7 @@ function PiechartComponent() {
 					fontSize: '7px',
 					fontColor: 'FFFFFA'
 				}}
-				lineWidth={30}
+				lineWidth={100}
 				rounded='true'
 				data={[
 					{ title: 'One', value: 10, color: '#E38627' },
