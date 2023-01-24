@@ -1,7 +1,7 @@
-var uniqid = require('uniqid');
-
+const uniqid = require('uniqid');
 const { Op } = require('sequelize')
-const { Suggestion } = require('../database/database')
+
+const { Suggestion, Paper } = require('../database/database')
 
 exports.requestSuggestion = async (req, res) => {
     const { id_paper, id_user } = req.body
@@ -29,15 +29,20 @@ exports.getSuggestions = async (req, res) => {
 
 exports.allSuggestions = async (req, res) => {
 
-    // const suggestions = await Suggestion.findAll({
-    //     where: {
-    //         [Op.col]: 'papers.id_paper'
-    //     }, 
-    //     raw: true
-    // })
-    // console.log("🚀 ~ file: suggestion.controller.js:32 ~ exports.allSuggestions= ~ suggestions", suggestions)
+    var suggestions = await Suggestion.findAll({ attributes: ['id_paper'], raw: true })
+    suggestions = suggestions.map((suggession) => (suggession.id_paper))
 
-    // res.json(suggestions)
+    var papers = await Paper.findAll({
+        where: {
+            id_paper: {
+                [Op.overlap]: suggestions
+            }
+        }, raw: true
+    })
+    console.log("🚀 ~ file: suggestion.controller.js:40 ~ exports.allSuggestions= ~ papers", papers)
+
+
+    res.json(papers)
 
 }
 
