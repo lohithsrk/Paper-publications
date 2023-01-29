@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Input,
+  Checkbox,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
 
 import { loginUser } from '../../axios/auth.axios';
 
@@ -27,10 +37,10 @@ const CreateUser = () => {
 	};
 
 	return (
-		<section className='flex justify-center w-full items-center h-[calc(100vh-5rem)]'>
-			<div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
+    <section className="flex justify-center w-full items-center h-[calc(100vh-5rem)]">
+      {/* <div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
-					<h1 className='flex font-bold text-4xl text-white'>Login</h1>
+					<h1 className='flex font-bold text-4xl text-white'>Create User</h1>
 				</div>
 				<form onSubmit={handleSubmit}>
 					<div className='flex flex-col items-center'>
@@ -59,9 +69,53 @@ const CreateUser = () => {
 						Login
 					</button>
 				</form>
-			</div>
-		</section>
-	);
+			</div> */}
+
+      <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <CardHeader
+            variant="gradient"
+            color="blue"
+            className="mb-4 grid h-28 place-items-center"
+          >
+            <Typography variant="h3" color="white">
+              Sign Up
+            </Typography>
+          </CardHeader>
+          <CardBody className="flex flex-col gap-4">
+            
+              <Input
+                variant="standard"
+                type="email"
+                label="Email"
+                size="lg"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              
+           
+            
+
+            <Input
+              variant="standard"
+              type="password"
+              label="Password"
+              size="lg"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button variant="gradient" fullWidth type="submit">
+              Sign Up
+            </Button>
+            
+          </CardFooter>
+        </form>
+      </Card>
+    </section>
+  );
 };
 
 export default CreateUser;

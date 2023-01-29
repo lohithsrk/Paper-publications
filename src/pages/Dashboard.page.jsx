@@ -10,9 +10,9 @@ const Dashboard = () => {
 				<div className='h-full w-full'>
 					<PiechartComponent />
 				</div>
-				<div className='h-full'>
+				{/* <div className='h-full'>
 					<OpenSuggestions />
-				</div>
+				</div> */}
 			</div>
 			<div className='w-full h-[calc(100vh-7rem)] rounded-lg overflow-hidden'>
 				<RecentUpdates />

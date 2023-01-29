@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { loginUser } from '../../axios/auth.axios';
+import Image from '../../assets/login-img.jpg';
 
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
@@ -27,8 +28,8 @@ const LoginPage = () => {
 	};
 
 	return (
-		<section className='flex justify-center w-full items-center h-[calc(100vh-5rem)]'>
-			<div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
+    <section className="justify-center w-full items-center ">
+      {/* <div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
 					<h1 className='flex font-bold text-4xl text-white'>Login</h1>
 				</div>
@@ -59,9 +60,49 @@ const LoginPage = () => {
 						Login
 					</button>
 				</form>
-			</div>
-		</section>
-	);
+			</div> */}
+
+      <div className="flex">
+        <div className="flex flex-col justify-center items-center w-[50%] ">
+          <h1 className="flex font-bold text-4xl text-black">Login</h1>
+          <p>Enter your details</p>
+          <form
+            className="flex flex-col justify-center items-center"
+            onSubmit={handleSubmit}
+          >
+            <label htmlFor="">Email</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="E-Mail"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              class="w-full rounded-md border-gray-200 pr-10 shadow-sm sm:text-sm"
+            />
+            <label htmlFor="">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              minLength="6"
+              maxLength="15"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              className="w-full rounded-md border-gray-200 pr-10 shadow-sm sm:text-sm"
+            />
+            <input type="checkbox" />
+            <label htmlFor="">Remember me</label>
+            <button>Sign In</button>
+          </form>
+        </div>
+        <div className="flex h-full flex-col justify-center items-center w-[50%] relative overflow-hidden ">
+          <img src={Image} alt="imageeee" className=" h-[100vh] w-full object-cover" />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default LoginPage;
