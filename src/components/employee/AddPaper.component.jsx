@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { appPaper } from '../../axios/paper.axios';
+import { addPaper } from '../../axios/paper.axios';
 
 const AddPaper = ({ fetchPapers, setIsDialogopened }) => {
 	const [title, setTitle] = useState('');
@@ -20,7 +20,7 @@ const AddPaper = ({ fetchPapers, setIsDialogopened }) => {
 		formData.append('userId', user.id_user);
 		formData.append('paper', paper);
 
-		appPaper(formData, user && user.token).then((res) => {
+		addPaper(formData, user && user.token).then((res) => {
 			fetchPapers(new Date().getFullYear());
 			setIsDialogopened(false);
 		});

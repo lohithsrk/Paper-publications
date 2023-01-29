@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import AddPaper from '../components/employee/AddPaper.component';
 import Paper from '../components/employee/Paper.component';
@@ -10,12 +10,12 @@ import { getPaper } from '../axios/paper.axios';
 const Employee = () => {
 	const { id_user } = useParams();
 	const { user } = useSelector((state) => ({ ...state }));
-
+	const { state } = useLocation();
 	const [papers, setPapers] = useState([]);
 	const [isDialogopened, setIsDialogopened] = useState(false);
 
-	const fetchPapers = async (order) =>
-		getPaper(id_user ? id_user : user.id_user, user.token, order).then(
+	const fetchPapers = async (year) =>
+		getPaper(id_user ? id_user : user.id_user, user.token, [year]).then(
 			(res) => {
 				setPapers(res.data);
 			}
@@ -38,8 +38,12 @@ const Employee = () => {
 				/>
 			)}
 			<div className='px-5'>
-				<h1 className='pl-20 font-bold text-4xl pt-7'>{user.name}</h1>
-				<h1 className='pl-20 font-normal text-xl pb-7 pt-1'>Designation</h1>
+				<h1 className='pl-20 font-bold text-4xl pt-7'>
+					{state && state.name
+						? state.name
+						: user.name.charAt(0).toUpperCase() + user.name.slice(1)}
+				</h1>
+				{/* <h1 className='pl-20 font-normal text-xl pb-7 pt-1'>Designation</h1> */}
 				<div className='flex w-full justify-between px-20'>
 					<span className='font-semibold'>
 						Papers Submitted:{' '}
@@ -57,17 +61,22 @@ const Employee = () => {
 			</div>
 			<div className='flex justify-between items-center mx-20 my-6 shadow-lg p-5 rounded-lg bg-white'>
 				<div className='flex'>
-					<button
-						className='bg-[#313A87] rounded-lg shadow-lg flex text-white p-2 items-center'
-						onClick={() => setIsDialogopened(true)}
-					>
-						<img
-							src='https://img.icons8.com/ios-glyphs/30/ffffff/macos-maximize.png'
-							width='35'
-							alt='plus'
-						/>
-						<span className='mx-2 '>Add paper</span>
-					</button>
+					{user && user.role !== 'admin' ? (
+						<button
+							className='
+							bg-[#313A87] rounded-lg shadow-lg flex text-white p-2 items-center'
+							onClick={() => setIsDialogopened(true)}
+						>
+							<img
+								src='https://img.icons8.com/ios-glyphs/30/ffffff/macos-maximize.png'
+								width='35'
+								alt='plus'
+							/>
+							<span className='mx-2 '>Add paper</span>
+						</button>
+					) : (
+						<h1 className='text-lg font-semibold uppercase'>Papers uploaded</h1>
+					)}
 				</div>
 				<div>
 					<select
@@ -85,7 +94,7 @@ const Employee = () => {
 				</div>
 			</div>
 			<div className='px-20'>
-				<div className='rounded-lg overflow-hidden shadow-lg mb-7 bg-white'>
+				<div className='rounded-lg overflow-hidden mb-7 bg-white'>
 					<Paper papers={papers} />
 				</div>
 			</div>

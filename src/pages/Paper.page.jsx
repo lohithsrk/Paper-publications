@@ -17,10 +17,8 @@ const Paper = () => {
 	const [suggestions, setSuggestions] = useState([]);
 	const [isEditModeOn, setIsEditModeOn] = useState(false);
 	const [paperChanged, setPaperChanged] = useState({});
-	const [isLoading, setIsLoading] = useState(false);
 
 	const fetchParticularPaper = async () => {
-		setIsLoading(true);
 		await getParticularPaper(id_paper, id_user).then((res) => {
 			setPaper(res.data);
 		});
@@ -30,7 +28,7 @@ const Paper = () => {
 	};
 
 	useEffect(() => {
-		fetchParticularPaper(id_paper, id_user).then(() => setIsLoading(false));
+		fetchParticularPaper(id_paper, id_user);
 	}, []);
 
 	const handleSubmit = async (e) => {
@@ -83,40 +81,59 @@ const Paper = () => {
 							</a>
 						</div>
 					) : (
-						<div>
-							<input
-								className='block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 my-4 p-3'
-								id='file_input'
-								type='file'
-								onChange={(e) => setPaperChanged(e.target.files[0])}
-							/>
+						<div className='flex flex-col'>
+							<select
+								name='Change status'
+								id=''
+								className='mt-1 rounded-lg border-[#ffff]'
+								defaultValue={paper.status}
+								onChange={(e) => setPaper({ ...paper, status: e.target.value })}
+								onClick={(e) => e.stopPropagation()}
+							>
+								<option value='Submitted'>Submitted</option>
+								<option value='Revision'>Revision</option>
+								<option value='Reviewed'>Reviewed</option>
+							</select>
+							<div>
+								<input
+									className='block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 my-4 p-3'
+									id='file_input'
+									type='file'
+									onChange={(e) => setPaperChanged(e.target.files[0])}
+								/>
+							</div>
 						</div>
 					)}
-					{!isEditModeOn && user.id_user === paper.id_user && (
-						<button
-							className='bg-[#313A87] rounded flex text-white p-2 items-center px-4 ml-3'
-							type='button'
-							onClick={() => {
-								requestSuggestion(
-									paper.id_paper,
-									paper.id_user,
-									user.token
-								).then((res) => {
-									getSuggestion(id_paper, user.token).then((res) => {
-										toast.success(res.data);
-										setSuggestions(res.data);
+					{!isEditModeOn &&
+						user &&
+						user.id_user &&
+						paper.id_user === user.id_user && (
+							<button
+								className='shadow-lg bg-[#313A87] rounded flex text-white p-2 items-center px-4 ml-3'
+								type='button'
+								onClick={() => {
+									requestSuggestion(
+										paper.id_paper,
+										paper.id_user,
+										user.token
+									).then((res) => {
+										getSuggestion(id_paper, user.token).then((res) => {
+											toast.success(res.data);
+											setSuggestions(res.data);
+										});
 									});
-								});
-							}}
-						>
-							Get Suggestions
-						</button>
-					)}
+								}}
+							>
+								Get Suggestions
+							</button>
+						)}
 					{user.id_user === paper.id_user && (
 						<button
 							onClick={() => setIsEditModeOn(!isEditModeOn)}
 							type={isEditModeOn ? 'button' : 'submit'}
-							className='bg-[#313A87] p-2 text-white rounded px-4 ml-3 shadow-xl'
+							className={`bg-[#313A87] p-2 text-white rounded px-4 ml-3 shadow-xl ${
+								isEditModeOn && 'mt-7'
+							}`}
 						>
 							{!isEditModeOn ? 'Edit Paper' : 'Save'}
 						</button>
@@ -134,13 +151,9 @@ const Paper = () => {
 						// ) :
 						suggestions ? (
 							suggestions.comments ? (
-								Object.keys(suggestions.comments).map((key) => (
-									<Suggestion
-										key={key}
-										user={key}
-										comment={suggestions.comments[key]}
-									/>
-								))
+								suggestions.comments.map((comment, i) => {
+									return <Suggestion key={i} comment={comment} />;
+								})
 							) : (
 								<p>You have no open suggestions</p>
 							)

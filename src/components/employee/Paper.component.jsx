@@ -2,11 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Paper = ({ papers }) => {
-	console.log('🚀 ~ file: Paper.component.jsx:5 ~ Paper ~ papers', papers);
 	const navigate = useNavigate();
 
 	return (
-		<div className='rounded-lg overflow-hidden shadow-lg'>
+		<div className='rounded-lg overflow-hidden shadow-lg mb-6'>
 			<table className='w-full text-center h-full'>
 				<thead className=' bg-gray-100'>
 					<tr>
@@ -49,7 +48,7 @@ const Paper = ({ papers }) => {
 					) : (
 						<tr>
 							<td></td>
-							<td className='py-3'>No papers found</td>
+							<td className='py-6'>No papers found</td>
 							<td></td>
 						</tr>
 					)}

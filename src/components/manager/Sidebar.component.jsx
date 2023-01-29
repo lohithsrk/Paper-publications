@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
+import { base_URL } from '../../utils/constants.util';
+
 const Sidebar = () => {
 	const { pathname } = useLocation();
 
@@ -12,13 +14,23 @@ const Sidebar = () => {
 						key={index}
 						className={`${
 							pathname === nav.path ? 'bg-[#313A87] text-white' : 'bg-gray-300'
-						} my-3 p-3 w-full text-center rounded-md shadow-md`}
+						} my-3 w-full text-center rounded-md shadow-md`}
 					>
-						<Link to={nav.path} className='w-full h-full'>
+						<Link to={nav.path} className='w-full h-full p-3 block'>
 							{nav.name}
 						</Link>
 					</li>
 				))}
+				<li className='bg-gray-300 my-3  w-full text-center rounded-md shadow-md'>
+					<button
+						onClick={() => {
+							window.open(`${base_URL}/generate-report`);
+						}}
+						className='w-full h-full p-3'
+					>
+						Generate Report
+					</button>
+				</li>
 			</ul>
 		</div>
 	);
