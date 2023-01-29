@@ -17,8 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         },
         comments: {
             type: DataTypes.JSON,
-            allowNull: true
+            allowNull: true,
+            defaultValue: []
         },
+        resolved: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
     })
     // Suggestion.sync({ force: true }).then(() => console.log('SUGGESTION MODEL CREATED')).catch((err) => console.log('ERROR ' + err))
     return Suggestion

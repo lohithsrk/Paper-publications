@@ -6,8 +6,15 @@ const { Paper } = require('../database/database')
 
 exports.papersGet = async (req, res) => {
     try {
-        const { id_user, year } = req.params
-        await Paper.findAll({ where: { id_user, year }, raw: true, order: [['updatedAt', 'DESC']] }).then(response => {
+        const { id_user } = req.params
+        const { year } = req.body
+        await Paper.findAll({
+            where: {
+                id_user, year: {
+                    [sequelize.Op.in]: year
+                }
+            }, raw: true, order: [['updatedAt', 'DESC']]
+        }).then(response => {
             res.json(response)
         })
     } catch (e) {
