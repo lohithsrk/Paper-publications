@@ -15,10 +15,12 @@ const Employees = () => {
 		getAllUsers(user.token).then((res) => {
 			const users = res.data;
 			users.forEach(async (u, i) => {
-				await getPaper(u.id_user, user.token, 'DESC').then((res) => {
-					u.papers = res.data;
-					setAllEmployees([...allEmployees, u]);
-				});
+				await getPaper(u.id_user, user.token, [new Date().getFullYear()]).then(
+					(res) => {
+						u.papers = res.data;
+						setAllEmployees([...allEmployees, u]);
+					}
+				);
 			});
 		});
 	}, []);
@@ -30,7 +32,8 @@ const Employees = () => {
 				{allEmployees.map((employee, index) => {
 					return (
 						<div
-							key={index}u
+							key={index}
+							u
 							className='bg-gray-200 p-3 px-5 rounded-md shadow-md cursor-pointer'
 							onClick={() => navigate(`/user/${employee.id_user}`)}
 						>

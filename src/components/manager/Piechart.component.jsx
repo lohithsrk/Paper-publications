@@ -18,8 +18,8 @@ function Piechart() {
   return (
     <Chart
       chartType="PieChart"
-      width="110%"
-      height="120%"
+      width="100%"
+      height="110%"
       data={data}
       options={options}
     />

@@ -28,17 +28,17 @@ const LoginPage = () => {
 	};
 
 	return (
-    <section className="justify-center w-full items-center ">
-      {/* <div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
+		<section className='flex justify-center w-full items-center h-[calc(100vh-5rem)] bg-gray-100'>
+			<div className='bg-gray-50  shadow-lg w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
-					<h1 className='flex font-bold text-4xl text-white'>Login</h1>
+					<h1 className='flex font-bold text-4xl text-[#313A87]'>Login</h1>
 				</div>
 				<form onSubmit={handleSubmit}>
 					<div className='flex flex-col items-center'>
 						<input
 							type='text'
 							name='email'
-							className='border-[#313A87] border-2 m-3 text-center rounded-lg leading-9'
+							className='border-2 m-3 text-center rounded-lg leading-9'
 							placeholder='E-Mail'
 							required
 							onChange={(e) => setEmail(e.target.value)}
@@ -47,7 +47,7 @@ const LoginPage = () => {
 						<input
 							type='password'
 							name='password'
-							className='border-[#313A87] border-2 m-3 text-center rounded-lg leading-9'
+							className='border-2 m-3 text-center rounded-lg leading-9'
 							placeholder='Password'
 							required
 							minLength='6'
@@ -60,7 +60,7 @@ const LoginPage = () => {
 						Login
 					</button>
 				</form>
-			</div> */}
+			</div> 
 
       <div className="flex">
         <div className="flex flex-col justify-center items-center w-[50%] ">

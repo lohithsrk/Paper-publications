@@ -22,14 +22,14 @@ const Employee = () => {
 		);
 
 	useEffect(() => {
-		fetchPapers('DESC');
+		fetchPapers(new Date().getFullYear());
 	}, []);
 
 	return (
 		<section
 			className={`relative ${
 				user.role === 'admin' ? 'w-[calc(100vw-10rem)]' : 'w-full'
-			}`}
+			} bg-gray-50`}
 		>
 			{isDialogopened && (
 				<AddPaper
@@ -37,29 +37,28 @@ const Employee = () => {
 					setIsDialogopened={setIsDialogopened}
 				/>
 			)}
-			<h1 className='pl-20 font-bold text-4xl py-7'>
-				Welcome back {user.name}
-			</h1>
-			<div className='flex w-full justify-between px-20'>
-				<span className='font-semibold'>
-					Papers Submitted:{' '}
-					{papers.filter((paper) => paper.status === 'Submitted').length}
-				</span>
-				<span className='font-semibold'>
-					Papers for review:{' '}
-					{papers.filter((paper) => paper.status === 'Revision').length}
-				</span>
-				<span className='font-semibold'>
-					Papers for reviewed:{' '}
-					{papers.filter((paper) => paper.status === 'Reviewed').length}
-				</span>
+			<div className='px-5'>
+				<h1 className='pl-20 font-bold text-4xl pt-7'>{user.name}</h1>
+				<h1 className='pl-20 font-normal text-xl pb-7 pt-1'>Designation</h1>
+				<div className='flex w-full justify-between px-20'>
+					<span className='font-semibold'>
+						Papers Submitted:{' '}
+						{papers.filter((paper) => paper.status === 'Submitted').length}
+					</span>
+					<span className='font-semibold'>
+						Papers for review:{' '}
+						{papers.filter((paper) => paper.status === 'Revision').length}
+					</span>
+					<span className='font-semibold'>
+						Papers for reviewed:{' '}
+						{papers.filter((paper) => paper.status === 'Reviewed').length}
+					</span>
+				</div>
 			</div>
-			<br />
-			<hr />
-			<div className='flex justify-between items-center mx-20 my-6'>
+			<div className='flex justify-between items-center mx-20 my-6 shadow-lg p-5 rounded-lg bg-white'>
 				<div className='flex'>
 					<button
-						className='bg-[#313A87] rounded-full flex text-white p-2 items-center'
+						className='bg-[#313A87] rounded-lg shadow-lg flex text-white p-2 items-center'
 						onClick={() => setIsDialogopened(true)}
 					>
 						<img
@@ -67,32 +66,28 @@ const Employee = () => {
 							width='35'
 							alt='plus'
 						/>
-						<span className='mx-2'>Add paper</span>
+						<span className='mx-2 '>Add paper</span>
 					</button>
 				</div>
 				<div>
 					<select
-						className='border-[#313A87] border-2 rounded-lg p-1 flex'
+						className='border-[#313A87] border-2 rounded-lg p-1 pl-4 flex shadow-lg'
 						onChange={(e) => fetchPapers(e.target.value)}
 					>
-						<option value='DESC'>Latest</option>
-						<option value='ASC'>Oldest</option>
+						{Array(5)
+							.fill(0)
+							.map((e, i) => (
+								<option value={new Date().getFullYear() - i}>
+									{new Date().getFullYear() - i}
+								</option>
+							))}
 					</select>
 				</div>
 			</div>
-			<hr />
-			<br />
-			<div className='flex px-20 gap-7 flex-wrap '>
-				{papers.map((paper, index) => {
-					return (
-						<Paper
-							paper={paper}
-							key={index}
-							fetchPapers={fetchPapers}
-							user={user}
-						/>
-					);
-				})}
+			<div className='px-20'>
+				<div className='rounded-lg overflow-hidden shadow-lg mb-7 bg-white'>
+					<Paper papers={papers} />
+				</div>
 			</div>
 		</section>
 	);
