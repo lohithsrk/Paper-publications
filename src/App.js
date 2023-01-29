@@ -1,20 +1,19 @@
-
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 import CreateUser from "./pages/auth/CreateUser.page";
 import LoginPage from "./pages/auth/Login.page";
-import Employee from './pages/Employee.page';
-import UserRoute from './routes/User.route';
-import Navbar from './components/Navbar.component';
-import Paper from './pages/Paper.page';
-import Employees from './pages/Employees.page';
-import Dashboard from './pages/Dashboard.page';
+import Employee from "./pages/Employee.page";
+import UserRoute from "./routes/User.route";
+import Navbar from "./components/Navbar.component";
+import Paper from "./pages/Paper.page";
+import Employees from "./pages/Employees.page";
+import Dashboard from "./pages/Dashboard.page";
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
