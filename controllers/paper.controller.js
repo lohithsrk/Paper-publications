@@ -1,17 +1,18 @@
 var uniqid = require('uniqid');
 const path = require('path');
+const sequelize = require('sequelize')
 
 const { Paper } = require('../database/database')
 
 exports.papersGet = async (req, res) => {
     try {
-        const { id_user, order } = req.params
-        await Paper.findAll({ where: { id_user }, raw: true, order: [['createdAt', order]] }).then(response => {
+        const { id_user, year } = req.params
+        await Paper.findAll({ where: { id_user, year }, raw: true, order: [['updatedAt', 'DESC']] }).then(response => {
             res.json(response)
         })
     } catch (e) {
         console.log(e);
-        return res.status(500).json({ e });
+        return res.status(500).json(e);
     }
 }
 
@@ -26,7 +27,7 @@ exports.addPaperPost = async (req, res) => {
             title,
             description,
             link: req.file.path,
-            id_user: userId
+            id_user: userId,
         }).then(() => {
             res.json('ok')
         })

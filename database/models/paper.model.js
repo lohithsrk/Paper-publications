@@ -31,6 +31,12 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 'Submitted'
 
         },
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: new Date().getFullYear()
+
+        },
     })
     // Paper.sync({ force: true }).then(() => console.log('PAPER MODEL CREATED')).catch((err) => console.log('ERROR ' + err))
     return Paper
