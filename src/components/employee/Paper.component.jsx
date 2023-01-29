@@ -1,56 +1,60 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { setPaper } from '../../axios/paper.axios';
-
-const Paper = ({ paper, fetchPapers, user }) => {
+const Paper = ({ papers }) => {
+	console.log('🚀 ~ file: Paper.component.jsx:5 ~ Paper ~ papers', papers);
 	const navigate = useNavigate();
 
 	return (
-		<div
-			onClick={(e) => {
-				navigate(`/paper/${paper.id_user}/${paper.id_paper}`);
-			}}
-			className='cursor-pointer'
-		>
-			<div
-				className={`flex justify-center items-center rounded-lg shadow-md flex-col p-2 min-w-fit ${
-					paper.status === 'Submitted'
-						? 'bg-[#E98086]'
-						: paper.status === 'Revision'
-						? 'bg-yellow-200'
-						: 'bg-green-300'
-				} p-5 cursor-pointer`}
-			>
-				<h1 className='text-center font-bold text-2xl'>{paper.title}</h1>
-
-				<div className='flex items-center justify-center flex-col'>
-					<p>Status: {paper.status}</p>
-					{user.role !== 'admin' && (
-						<select
-							name='Change status'
-							id=''
-							className='mt-1 rounded-lg border-[#ffff]'
-							defaultValue={paper.status}
-							onChange={(e) => {
-								setPaper(paper.id_paper, user.token, e.target.value).then(
-									(res) => {
-										fetchPapers('DESC');
-									}
-								);
-							}}
-							onClick={(e) => e.stopPropagation()}
-						>
-							<option value='Submitted'>Submitted</option>
-							<option value='Revision'>Revision</option>
-							<option value='Reviewed'>Reviewed</option>
-						</select>
+		<div className='rounded-lg overflow-hidden shadow-lg'>
+			<table className='w-full text-center h-full'>
+				<thead className=' bg-gray-100'>
+					<tr>
+						<td className='py-3 font-semibold text-base'>Title</td>
+						<td className='py-3 font-semibold text-base'>Date</td>
+						<td className='py-3 font-semibold text-base'>Status</td>
+					</tr>
+				</thead>
+				<tbody>
+					{papers && papers.length > 0 ? (
+						papers.map((paper, index) => (
+							<tr
+								key={index}
+								className='border-b-[1px] border-gray-100 cursor-pointer'
+								onClick={(e) => {
+									navigate(`/paper/${paper.id_user}/${paper.id_paper}`);
+								}}
+							>
+								<td className='py-3'>
+									{paper.title.charAt(0).toUpperCase() + paper.title.slice(1)}
+								</td>
+								<td className='py-3'>
+									{new Date(paper.createdAt).toLocaleString().split(',')[0]}
+									<br />
+									{new Date(paper.createdAt).toLocaleString().split(',')[1]}
+								</td>
+								<td
+									className={`py-3 font-semibold ${
+										paper.status === 'Submitted'
+											? 'text-red-500'
+											: paper.status === 'Revision'
+											? 'text-yellow-400'
+											: 'text-green-400'
+									}`}
+								>
+									{paper.status}
+								</td>
+							</tr>
+						))
+					) : (
+						<tr>
+							<td></td>
+							<td className='py-3'>No papers found</td>
+							<td></td>
+						</tr>
 					)}
-					<p className='pt-3'>
-						Date: {new Date(paper.createdAt).toLocaleString()}
-					</p>
-				</div>
-			</div>
+				</tbody>
+			</table>
 		</div>
 	);
 };

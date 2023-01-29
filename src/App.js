@@ -21,8 +21,8 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Navbar />
       <Router>
+        <Navbar />
         <div className="main-body">
           <Routes>
             {user && user.role === 'standard' ? (

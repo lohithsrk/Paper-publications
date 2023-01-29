@@ -21,17 +21,31 @@ const AddPaper = ({ fetchPapers, setIsDialogopened }) => {
 		formData.append('paper', paper);
 
 		appPaper(formData, user && user.token).then((res) => {
-			fetchPapers('DESC');
+			fetchPapers(new Date().getFullYear());
 			setIsDialogopened(false);
 		});
 	};
 
 	return (
-		<div className='absolute w-full top-0 left-0 h-[calc(100vh-5rem)] bg-black bg-opacity-40 flex items-center justify-center backdrop-blur-sm'>
-			<div className='bg-white rounded-md p-8 shadow-xl w-2/4'>
-				<h3 className='text-center font-bold uppercase text-xl'>
-					Upload your paper
-				</h3>
+		<div
+			className='absolute w-full top-0 left-0 h-[calc(100vh-5rem)] bg-black bg-opacity-40 flex items-center justify-center backdrop-blur-sm'
+			onClick={() => setIsDialogopened(false)}
+		>
+			<div
+				className='bg-white rounded-md p-8 shadow-xl w-2/4'
+				onClick={(e) => e.stopPropagation()}
+			>
+				<div className='w-full flex justify-between items-center'>
+					<h3 className=' font-bold uppercase text-xl inline'>
+						Upload your paper
+					</h3>
+					<span
+						className='text-4xl cursor-pointer'
+						onClick={() => setIsDialogopened(false)}
+					>
+						&times;
+					</span>
+				</div>
 				<form
 					className='flex flex-col items-center justify-center'
 					onSubmit={handleSubmit}
