@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import AddPaper from '../components/employee/AddPaper.component';
 import Paper from '../components/employee/Paper.component';
@@ -12,12 +12,12 @@ import Image from "../assets/plus-icon-white.png";
 const Employee = () => {
 	const { id_user } = useParams();
 	const { user } = useSelector((state) => ({ ...state }));
-
+	const { state } = useLocation();
 	const [papers, setPapers] = useState([]);
 	const [isDialogopened, setIsDialogopened] = useState(false);
 
-	const fetchPapers = async (order) =>
-		getPaper(id_user ? id_user : user.id_user, user.token, order).then(
+	const fetchPapers = async (year) =>
+		getPaper(id_user ? id_user : user.id_user, user.token, [year]).then(
 			(res) => {
 				setPapers(res.data);
 			}

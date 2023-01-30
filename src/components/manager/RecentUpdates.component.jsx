@@ -14,7 +14,7 @@ const RecentUpdates = () => {
     getRecentPapers(user.token).then((response) => {
       setRecentPapers(response.data);
     });
-  }, []);
+  }, [user.token]);
 
 	return (
     <div className="h-full">

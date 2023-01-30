@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Paper = ({ papers }) => {
-	console.log('🚀 ~ file: Paper.component.jsx:5 ~ Paper ~ papers', papers);
 	const navigate = useNavigate();
 
 	return (

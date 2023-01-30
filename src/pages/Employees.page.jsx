@@ -15,7 +15,7 @@ const Employees = () => {
 		getAllUsers(user.token).then((res) => {
 			const users = res.data;
 			users.forEach(async (u, i) => {
-				await getPaper(u.id_user, user.token, [new Date().getFullYear()]).then(
+				await getPaper(u.id_user, user.token, [2023,2024,2025,2026,2027]).then(
 					(res) => {
 						u.papers = res.data;
 						setAllEmployees([...allEmployees, u]);
@@ -26,7 +26,7 @@ const Employees = () => {
 	}, []);
 
 	return (
-		<div className='px-10 py-5'>
+		<div className='px-10 py-5 w-[calc(100vw-15rem)]'>
 			<h1 className='font-bold text-2xl mb-5'>Employees</h1>
 			<div>
 				{allEmployees.map((employee, index) => {

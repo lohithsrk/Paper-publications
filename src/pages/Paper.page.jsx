@@ -17,10 +17,8 @@ const Paper = () => {
 	const [suggestions, setSuggestions] = useState([]);
 	const [isEditModeOn, setIsEditModeOn] = useState(false);
 	const [paperChanged, setPaperChanged] = useState({});
-	const [isLoading, setIsLoading] = useState(false);
 
 	const fetchParticularPaper = async () => {
-		setIsLoading(true);
 		await getParticularPaper(id_paper, id_user).then((res) => {
 			setPaper(res.data);
 		});
@@ -30,7 +28,7 @@ const Paper = () => {
 	};
 
 	useEffect(() => {
-		fetchParticularPaper(id_paper, id_user).then(() => setIsLoading(false));
+		fetchParticularPaper(id_paper, id_user);
 	}, []);
 
 	const handleSubmit = async (e) => {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
+import { base_URL } from '../../utils/constants.util';
+
 const Sidebar = () => {
 	const { pathname } = useLocation();
 
