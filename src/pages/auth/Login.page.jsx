@@ -28,8 +28,8 @@ const LoginPage = () => {
 	};
 
 	return (
-    <section className="flex justify-center w-full items-center h-[100vh] bg-white">
-      {/* <div className='bg-gray-50  shadow-lg w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
+		<section className='flex justify-center w-full items-center h-[100vh] bg-white'>
+			{/* <div className='bg-gray-50  shadow-lg w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
 					<h1 className='flex font-bold text-4xl text-[#313A87]'>Login</h1>
 				</div>
@@ -62,51 +62,54 @@ const LoginPage = () => {
 				</form>
 			</div>  */}
 
-      <div className="flex w-[100%]">
-        <div className="flex flex-col justify-center items-center w-[50%]">
-          <div className="p-20 rounded-lg">
-            <h1 className="flex items-center font-bold text-6xl text-black">
-              Login
-            </h1>
-            <p className="mb-12 mt-5 text-lg">Enter your details</p>
-            <form
-              className="flex flex-col justify-center items-center"
-              onSubmit={handleSubmit}
-            >
-              <label htmlFor="">Email</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="E-Mail"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                className="appearance-none bg-transparent border-2 border-[#ffffff] border-b-gray-300 focus:border-b-[#354259] w-full text-black text-lg mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none"
-              />
-              <label htmlFor="">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-                minLength="6"
-                maxLength="15"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                className="appearance-none bg-transparent border-2 border-[#ffffff]  border-b-gray-300  focus:border-b-[#354259] w-full text-black text-lg mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none"
-              />
-              <button className="inline-block px-6 py-2.5 bg-[#354259] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#C2DED1] hover:text-black hover:shadow-lg focus:bg-[#C2DED1] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#C2DED1] active:shadow-lg active:text-black transition duration-150 ease-in-out m-5">
-                Sign In
-              </button>
-            </form>
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-center w-[50%] relative h-[100vh] bg-black]">
-          <img src={Image} alt="" className="object-cover" />
-        </div>
-      </div>
-    </section>
-  );
+			<div className='flex w-[100%]'>
+				<div className='flex flex-col justify-center items-center w-[50%]'>
+					<div className='p-20 rounded-lg'>
+						<h1 className='flex items-center mb-3 font-bold text-6xl text-black'>
+							Login
+						</h1>
+						<form
+							className='flex flex-col justify-center items-center'
+							onSubmit={handleSubmit}
+						>
+							<label htmlFor='' className='block w-full'>
+								Email
+							</label>
+							<input
+								type='text'
+								name='email'
+								placeholder='E-Mail'
+								required
+								onChange={(e) => setEmail(e.target.value)}
+								value={email}
+								className='appearance-none bg-transparent border-2 border-[#ffffff] border-b-gray-300 focus:border-b-[#354259] w-full text-black text-lg mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none'
+							/>
+							<label htmlFor='' className='w-full'>
+								Password
+							</label>
+							<input
+								type='password'
+								name='password'
+								placeholder='Password'
+								required
+								minLength='6'
+								maxLength='15'
+								onChange={(e) => setPassword(e.target.value)}
+								value={password}
+								className='appearance-none bg-transparent border-2 border-[#ffffff]  border-b-gray-300  focus:border-b-[#354259] w-full text-black text-lg mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none'
+							/>
+							<button className='w-full inline-block px-6 py-2.5 bg-[#354259] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#C2DED1] hover:text-black hover:shadow-lg focus:bg-[#C2DED1] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#C2DED1] active:shadow-lg active:text-black transition duration-150 ease-in-out m-5'>
+								Sign In
+							</button>
+						</form>
+					</div>
+				</div>
+				<div className='flex flex-col justify-center items-center w-[50%] relative h-[100vh] bg-black]'>
+					<img src={Image} alt='' className='object-cover' />
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default LoginPage;

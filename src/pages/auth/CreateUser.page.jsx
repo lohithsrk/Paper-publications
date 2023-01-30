@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+	Input,
+	Checkbox,
+	Button,
+	Typography
+} from '@material-tailwind/react';
 
 import { loginUser } from '../../axios/auth.axios';
 
@@ -37,8 +37,8 @@ const CreateUser = () => {
 	};
 
 	return (
-    <section className="flex justify-center w-full items-center h-[calc(100vh-5rem)]">
-      {/* <div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
+		<section className='flex justify-center w-full items-center h-[calc(100vh-5rem)]'>
+			{/* <div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
 					<h1 className='flex font-bold text-4xl text-white'>Create User</h1>
 				</div>
@@ -71,7 +71,7 @@ const CreateUser = () => {
 				</form>
 			</div> */}
 
-      {/* <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
+			{/* <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
         <form onSubmit={(e) => handleSubmit(e)}>
           <CardHeader
             variant="gradient"
@@ -114,46 +114,47 @@ const CreateUser = () => {
           </CardFooter>
         </form>
       </Card> */}
-      <div className="flex w-[100%]">
-        <div className="flex flex-col justify-center items-center w-[100%]">
-          <div className="p-20 rounded-lg flex flex-col justify-center items-center">
-            <h1 className="flex  font-bold text-6xl text-black">Create User</h1>
-            <p className="mb-12 mt-5 text-lg">Enter your details</p>
-            <form
-              className="flex flex-col justify-center items-center"
-              onSubmit={handleSubmit}
-            >
-              <label htmlFor="">Email</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="E-Mail"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                className="appearance-none bg-transparent border-2 border-[#ffffff] border-b-[#00008b] w-full text-black text-lg mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none"
-              />
-              <label htmlFor="">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-                minLength="6"
-                maxLength="15"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                className="appearance-none bg-transparent border-2 border-[#ffffff] border-b-[#00008b] w-full text-black text-lg mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none"
-              />
-              <button className="inline-block px-6 py-2.5 bg-[#354259] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#C2DED1] hover:text-black hover:shadow-lg focus:bg-[#C2DED1] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#C2DED1] active:shadow-lg active:text-black transition duration-150 ease-in-out m-5">
-                Create User
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+			<div className='flex w-[100%]'>
+				<div className='flex flex-col justify-center items-center w-[100%]'>
+					<div className='p-20 rounded-lg flex flex-col justify-center items-center'>
+						<h1 className='flex  font-bold mb-3 text-3xl text-black'>
+							Create User
+						</h1>
+						<form
+							className='flex flex-col justify-center items-center'
+							onSubmit={handleSubmit}
+						>
+							<label htmlFor='' className='w-full'>Email</label>
+							<input
+								type='text'
+								name='email'
+								placeholder='E-Mail'
+								required
+								onChange={(e) => setEmail(e.target.value)}
+								value={email}
+								className='appearance-none bg-transparent border-2 border-[#ffffff] border-b-[#00008b] w-full text-black text-base mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none'
+							/>
+							<label htmlFor='' className='w-full'>Password</label>
+							<input
+								type='password'
+								name='password'
+								placeholder='Password'
+								required
+								minLength='6'
+								maxLength='15'
+								onChange={(e) => setPassword(e.target.value)}
+								value={password}
+								className='appearance-none bg-transparent border-2 border-[#ffffff] border-b-[#00008b] w-full text-black text-base mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none'
+							/>
+							<button className='w-full inline-block px-6 py-2.5 bg-[#354259] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#C2DED1] hover:text-black hover:shadow-lg focus:bg-[#C2DED1] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#C2DED1] active:shadow-lg active:text-black transition duration-150 ease-in-out m-5'>
+								Create user
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default CreateUser;

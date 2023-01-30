@@ -41,7 +41,7 @@ const Employee = () => {
       )}
       <div className="px-5">
         <h1 className="pl-20 font-bold text-4xl pt-7">{user.name}</h1>
-        <h1 className="pl-20 font-normal text-xl pb-7 pt-1">Designation</h1>
+        {/* <h1 className="pl-20 font-normal text-xl pb-7 pt-1">Designation</h1> */}
         <div className="flex w-full justify-between px-20">
           <span className="font-semibold">
             Papers Submitted:{" "}
