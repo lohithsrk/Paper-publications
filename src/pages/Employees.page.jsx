@@ -31,39 +31,39 @@ const Employees = () => {
 			<div>
 				{allEmployees.map((employee, index) => {
 					return (
-						<div
-							key={index}
-							u
-							className='bg-gray-200 p-3 px-5 rounded-md shadow-md cursor-pointer'
-							onClick={() => navigate(`/user/${employee.id_user}`)}
-						>
-							<p className='text-center text-xl font-semibold mb-3'>
-								{employee.name}
-							</p>
-							<p className='bg-white p-2 rounded-md mb-2'>
-								Submitted:{' '}
-								{
-									employee.papers.filter(
-										(paper) => paper.status === 'Submitted'
-									).length
-								}
-							</p>
-							<p className='bg-white p-2 rounded-md mb-2'>
-								Revision:{' '}
-								{
-									employee.papers.filter((paper) => paper.status === 'Revision')
-										.length
-								}
-							</p>
-							<p className='bg-white p-2 rounded-md mb-2'>
-								Reviewed:{' '}
-								{
-									employee.papers.filter((paper) => paper.status === 'Reviewed')
-										.length
-								}
-							</p>
-						</div>
-					);
+            <div
+              key={index}
+              u
+              className="bg-[#CDC2AE] p-3 px-5 rounded-md shadow-md cursor-pointer"
+              onClick={() => navigate(`/user/${employee.id_user}`)}
+            >
+              <p className="text-center text-xl font-semibold mb-3">
+                {employee.name}
+              </p>
+              <p className="bg-white p-2 rounded-md mb-2">
+                Submitted:{" "}
+                {
+                  employee.papers.filter(
+                    (paper) => paper.status === "Submitted"
+                  ).length
+                }
+              </p>
+              <p className="bg-white p-2 rounded-md mb-2">
+                Revision:{" "}
+                {
+                  employee.papers.filter((paper) => paper.status === "Revision")
+                    .length
+                }
+              </p>
+              <p className="bg-white p-2 rounded-md mb-2">
+                Reviewed:{" "}
+                {
+                  employee.papers.filter((paper) => paper.status === "Reviewed")
+                    .length
+                }
+              </p>
+            </div>
+          );
 				})}
 			</div>
 		</div>
