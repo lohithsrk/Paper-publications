@@ -7,6 +7,7 @@ import Suggestion from '../components/paper/Suggestion.component';
 
 import { getParticularPaper, updatePaper } from '../axios/paper.axios';
 import { getSuggestion, requestSuggestion } from '../axios/suggestion.axios';
+import { base_URL } from '../utils/constants.util';
 
 const Paper = () => {
 	const { id_paper, id_user } = useParams({});
@@ -72,7 +73,7 @@ const Paper = () => {
 					{!isEditModeOn ? (
 						<div>
 							<a
-								href={`https://paper-publication-server.onrender.com/api/${paper.link}`}
+								href={`${base_URL}/${paper.link}`}
 								target='_blank'
 								rel='noreferrer'
 								className='bg-[#354259] p-2 text-white rounded px-4 py-2.5 w-full shadow-xl hover:bg-[#C2DED1] hover:text-black transition duration-150 ease-in-out'
