@@ -13,6 +13,7 @@ import Image from '../assets/plus-icon-white.png';
 const Employee = () => {
 	const { id_user } = useParams();
 	const { user } = useSelector((state) => ({ ...state }));
+	console.log('🚀 ~ file: Employee.page.jsx:16 ~ Employee ~ user', user);
 	const [papers, setPapers] = useState([]);
 	const [isDialogopened, setIsDialogopened] = useState(false);
 
@@ -60,15 +61,21 @@ const Employee = () => {
 					</span>
 				</div>
 			</div>
-			<div className='flex justify-between items-center mx-20 my-6 shadow-lg p-5 rounded-lg bg-[#ECE5C7]'>
+			<div
+				className={`flex justify-between items-center mx-20 my-6 -lg ${
+					user && user.role !== 'admin' && 'bg-[#ECE5C7] shadow-lg p-5 rounded'
+				}`}
+			>
 				<div className='flex'>
-					<button
-						className='bg-[#354259] rounded-lg shadow-lg flex text-white p-2 items-center'
-						onClick={() => setIsDialogopened(true)}
-					>
-						<img src={Image} width='35' alt='plus' />
-						<span className='mx-2 text-white font-bold '>Add paper</span>
-					</button>
+					{user && user.role !== 'admin' && (
+						<button
+							className='bg-[#354259] rounded-lg shadow-lg flex text-white p-2 items-center'
+							onClick={() => setIsDialogopened(true)}
+						>
+							<img src={Image} width='35' alt='plus' />
+							<span className='mx-2 text-white font-bold '>Add paper</span>
+						</button>
+					)}
 				</div>
 				<div>
 					<select
