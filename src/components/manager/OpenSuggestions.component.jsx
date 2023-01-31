@@ -23,97 +23,97 @@ const OpenSuggestions = () => {
 	}, []);
 
 	return (
-    <div>
-      {current && (
-        <CommentDialog paper={current} setCurrent={setCurrent} user={user} />
-      )}
-      <div className="overflow-y-scroll">
-        <div className="mr-5 ">
-          <div className="rounded-lg overflow-hidden shadow-lg mb-6">
-            <table className="w-full text-center h-full bg-[#ECE5C7]">
-              <thead className=" bg-black">
-                <tr>
-                  <td className="py-3 font-semibold text-base text-white">
-                    Title
-                  </td>
-                  <td className="py-3 font-semibold text-base text-white">
-                    Date
-                  </td>
-                  <td className="py-3 font-semibold text-base text-white">
-                    Status
-                  </td>
-                  <td className="py-3 font-semibold text-base text-white">
-                    Suggest
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                {suggestions && suggestions.length > 0 ? (
-                  suggestions.map((paper, index) => (
-                    <tr
-                      key={index}
-                      className="border-b-[1px] border-gray-100 cursor-pointer"
-                      onClick={(e) => {
-                        navigate(`/paper/${paper.id_user}/${paper.id_paper}`);
-                      }}
-                    >
-                      <td className="py-3">
-                        {paper.title.charAt(0).toUpperCase() +
-                          paper.title.slice(1)}
-                      </td>
-                      <td className="py-3">
-                        {
-                          new Date(paper.createdAt)
-                            .toLocaleString()
-                            .split(",")[0]
-                        }
-                        <br />
-                        {
-                          new Date(paper.createdAt)
-                            .toLocaleString()
-                            .split(",")[1]
-                        }
-                      </td>
-                      <td
-                        className={`py-3 font-semibold ${
-                          paper.status === "Submitted"
-                            ? "text-red-500"
-                            : paper.status === "Revision"
-                            ? "text-yellow-400"
-                            : "text-green-400"
-                        }`}
-                      >
-                        {paper.status}
-                      </td>
-                      <td className="py-3">
-                        <button
-                          className="bg-[#313A87] p-2 text-white rounded px-4 shadow-xl"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrent(paper);
-                          }}
-                        >
-                          Suggest
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td className="py-6">No suggestions found</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+		<div>
+			{current && (
+				<CommentDialog paper={current} setCurrent={setCurrent} user={user} />
+			)}
+			<div className='overflow-y-scroll'>
+				<div className='mr-5 '>
+					<div className='rounded-lg overflow-hidden shadow-lg mb-6'>
+						<table className='w-full text-center h-full bg-[#ECE5C7]'>
+							<thead className=' bg-[#354259]'>
+								<tr>
+									<td className='py-3 font-semibold text-base text-white'>
+										Title
+									</td>
+									<td className='py-3 font-semibold text-base text-white'>
+										Date
+									</td>
+									<td className='py-3 font-semibold text-base text-white'>
+										Status
+									</td>
+									<td className='py-3 font-semibold text-base text-white'>
+										Suggest
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								{suggestions && suggestions.length > 0 ? (
+									suggestions.map((paper, index) => (
+										<tr
+											key={index}
+											className='border-b-[1px] border-gray-100 cursor-pointer'
+											onClick={(e) => {
+												navigate(`/paper/${paper.id_user}/${paper.id_paper}`);
+											}}
+										>
+											<td className='py-3'>
+												{paper.title.charAt(0).toUpperCase() +
+													paper.title.slice(1)}
+											</td>
+											<td className='py-3'>
+												{
+													new Date(paper.createdAt)
+														.toLocaleString()
+														.split(',')[0]
+												}
+												<br />
+												{
+													new Date(paper.createdAt)
+														.toLocaleString()
+														.split(',')[1]
+												}
+											</td>
+											<td
+												className={`py-3 font-semibold ${
+													paper.status === 'Submitted'
+														? 'text-red-500'
+														: paper.status === 'Revision'
+														? 'text-yellow-400'
+														: 'text-green-400'
+												}`}
+											>
+												{paper.status}
+											</td>
+											<td className='py-3'>
+												<button
+													className='bg-[#354259] p-2 text-white rounded px-4 shadow-xl'
+													onClick={(e) => {
+														e.stopPropagation();
+														setCurrent(paper);
+													}}
+												>
+													Suggest
+												</button>
+											</td>
+										</tr>
+									))
+								) : (
+									<tr>
+										<td></td>
+										<td></td>
+										<td className='py-6'>No suggestions found</td>
+										<td></td>
+										<td></td>
+									</tr>
+								)}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 const CommentDialog = ({ paper, setCurrent, user }) => {
@@ -165,7 +165,7 @@ const CommentDialog = ({ paper, setCurrent, user }) => {
 							onChange={(e) => setComment(e.target.value)}
 						></textarea>
 					</div>
-					<button className='bg-[#313A87] p-2 text-white rounded px-4 w-full shadow-xl mt-4'>
+					<button className='bg-[#354259] p-2 text-white rounded px-4 w-full shadow-xl mt-4'>
 						SUGGEST
 					</button>
 				</form>

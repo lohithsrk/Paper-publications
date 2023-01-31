@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 import Suggestion from '../components/paper/Suggestion.component';
 
@@ -47,6 +48,9 @@ const Paper = () => {
 
 	return (
 		<section className='px-20 pt-10'>
+			<Helmet>
+				<title>{paper.title}</title>
+			</Helmet>
 			<form onSubmit={handleSubmit}>
 				<input
 					type='text'

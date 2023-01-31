@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 import { loginUser } from '../../axios/auth.axios';
 import Image from '../../assets/login-img-3.jpg';
@@ -29,6 +30,9 @@ const LoginPage = () => {
 
 	return (
 		<section className='flex justify-center w-full items-center h-[100vh] bg-white'>
+			<Helmet>
+				<title>Login</title>
+			</Helmet>
 			{/* <div className='bg-gray-50  shadow-lg w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
 					<h1 className='flex font-bold text-4xl text-[#313A87]'>Login</h1>
@@ -56,7 +60,7 @@ const LoginPage = () => {
 							value={password}
 						/>
 					</div>
-					<button className='bg-[#313A87] rounded-lg flex text-white p-2 items-center px-10 m-10 mt-20 hover:bg-violet-600'>
+					<button className='bg-[#354259] rounded-lg flex text-white p-2 items-center px-10 m-10 mt-20 hover:bg-violet-600'>
 						Login
 					</button>
 				</form>

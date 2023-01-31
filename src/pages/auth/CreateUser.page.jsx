@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import {
-	Card,
-	CardHeader,
-	CardBody,
-	CardFooter,
-	Input,
-	Checkbox,
-	Button,
-	Typography
-} from '@material-tailwind/react';
+import { Helmet } from 'react-helmet';
 
 import { loginUser } from '../../axios/auth.axios';
 
@@ -38,6 +29,9 @@ const CreateUser = () => {
 
 	return (
 		<section className='flex justify-center w-full items-center h-[calc(100vh-5rem)]'>
+			<Helmet>
+				<title>Create User</title>
+			</Helmet>
 			{/* <div className='bg-[#83A1CE] w-[30%] rounded-lg h-[80%] flex flex-col justify-center items-center shadow-neu1 shadow-neu2'>
 				<div className='flex flex-col mb-10'>
 					<h1 className='flex font-bold text-4xl text-white'>Create User</h1>
@@ -65,7 +59,7 @@ const CreateUser = () => {
 							value={password}
 						/>
 					</div>
-					<button className='bg-[#313A87] rounded-lg flex text-white p-2 items-center px-10 m-10 mt-20 hover:bg-violet-600'>
+					<button className='bg-[#354259] rounded-lg flex text-white p-2 items-center px-10 m-10 mt-20 hover:bg-violet-600'>
 						Login
 					</button>
 				</form>
@@ -124,7 +118,9 @@ const CreateUser = () => {
 							className='flex flex-col justify-center items-center'
 							onSubmit={handleSubmit}
 						>
-							<label htmlFor='' className='w-full'>Email</label>
+							<label htmlFor='' className='w-full'>
+								Email
+							</label>
 							<input
 								type='text'
 								name='email'
@@ -134,7 +130,9 @@ const CreateUser = () => {
 								value={email}
 								className='appearance-none bg-transparent border-2 border-[#ffffff] border-b-[#00008b] w-full text-black text-base mt-3 mb-5 py-1 px-2 leading-tight focus:outline-none'
 							/>
-							<label htmlFor='' className='w-full'>Password</label>
+							<label htmlFor='' className='w-full'>
+								Password
+							</label>
 							<input
 								type='password'
 								name='password'
