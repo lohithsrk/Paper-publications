@@ -99,3 +99,16 @@ exports.recentPapers = async (req, res) => {
         return res.status(500).json({ error });
     }
 }
+
+exports.allPapers = async (req, res) => {
+    try {
+        await Paper.findAll({
+            raw: true
+        }).then(response => {
+            res.json(response)
+        })
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json(e);
+    }
+}

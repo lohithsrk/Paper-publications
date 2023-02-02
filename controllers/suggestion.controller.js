@@ -25,15 +25,15 @@ exports.getSuggestions = async (req, res) => {
     ids = suggestions.comments.map(comment => comment.id_user)
     const users = await User.findAll({ where: { id_user: { [Op.in]: ids }, }, attributes: ['name', 'id_user'], raw: true })
 
-    var comment = suggestions.comments.map(comment => {
+    var comment = suggestions.comments.length > 0 ? suggestions.comments.map(comment => {
         matchedUser = users.filter(user => user.id_user === comment.id_user)[0]
         return {
             comment: comment.comment,
             username: matchedUser.name
         }
-    })
+    }) : {}
 
-    res.json({ ...suggestions, comments: users.length > 0 ? comment : null })
+    res.json({ ...suggestions, comments: comment })
 
 }
 
