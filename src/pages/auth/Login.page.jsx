@@ -24,7 +24,7 @@ const LoginPage = () => {
 				});
 			})
 			.catch(({ response }) => {
-				toast.error(response.data.error);
+				toast.error(response);
 			});
 	};
 
