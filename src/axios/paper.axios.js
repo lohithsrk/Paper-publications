@@ -5,6 +5,9 @@ import { base_URL } from '../utils/constants.util'
 export const addPaper = async (formData, token) =>
     await axios.post(`${base_URL}/addpaper`, formData, { headers: { 'Authorization': `Bearer ${token}` } })
 
+export const getPapers = async (token) =>
+    await axios.get(`${base_URL}/papers/all`, { headers: { 'Authorization': `Bearer ${token}` } })
+
 export const updatePaper = async (formData, token) =>
     await axios.post(`${base_URL}/updatepaper`, formData, { headers: { 'Authorization': `Bearer ${token}` } })
 
